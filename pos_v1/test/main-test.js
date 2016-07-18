@@ -2,6 +2,7 @@
 
 describe('pos', () => {
   let inputs;
+  let loadItems;
 
   beforeEach(() => {
     inputs = [
@@ -15,6 +16,7 @@ describe('pos', () => {
       'ITEM000005',
       'ITEM000005'
     ];
+    loadItems = loadAllItems();
   });
 
   it('should print correct text', () => {
@@ -33,5 +35,34 @@ describe('pos', () => {
 **********************`;
 
     expect(console.log).toHaveBeenCalledWith(expectText);
+  });
+
+  it('should print cartItems', () => {
+    let cartItems = buildCartItems(inputs, loadItems);
+    const expectCartItems = [
+      {
+        barcode: "ITEM000001",
+        name: "雪碧",
+        price: "3.00",
+        unit: "瓶",
+        count: 5
+      },
+      {
+        barcode: "ITEM000003-2",
+        name: "荔枝",
+        price: "15.00",
+        unit: "斤",
+        count: 2
+      },
+      {
+        barcode: "ITEM000005",
+        name: "方便面",
+        price: "4.50",
+        unit: "袋",
+        count: 3
+      }
+    ];
+
+    expect(cartItems).toEqual(expectCartItems);
   });
 });
