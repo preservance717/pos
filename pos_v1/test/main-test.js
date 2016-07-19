@@ -6,6 +6,7 @@ describe('pos', () => {
   let promotions;
   let cartItems;
   let receiptItems;
+  let receipt;
 
   beforeEach(() => {
     inputs = [
@@ -89,13 +90,58 @@ describe('pos', () => {
         saved: 4.50
       }
     ];
+    receipt = {
+      receiptItems: [
+        {
+          cartItem: {
+            item: {
+              barcode: "ITEM000001",
+              name: "雪碧",
+              unit: "瓶",
+              price: 3.00
+            },
+            count: 5
+          },
+          subtotal: 12.00,
+          saved: 3.00
+        },
+        {
+          cartItem: {
+            item: {
+              barcode: "ITEM000003",
+              name: "荔枝",
+              unit: "斤",
+              price: 15.00
+            },
+            count: 2
+          },
+          subtotal: 30.00,
+          saved: 0.00
+        },
+        {
+          cartItem: {
+            item: {
+              barcode: "ITEM000005",
+              name: "方便面",
+              unit: "袋",
+              price: 4.50
+            },
+            count: 3
+          },
+          subtotal: 9.00,
+          saved: 4.50
+        }
+      ],
+      total: 51.00,
+      discount: 7.50
+    };
   });
 
   it('should print correct text', () => {
 
     spyOn(console, 'log');
 
-    //   printReceipt(inputs);
+    printReceipt(receipt);
 
     const expectText = `***<没钱赚商店>收据***
 名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)
@@ -264,7 +310,7 @@ describe('pos', () => {
   it("should print receipt", () => {
     let receipt = buildReceipt(receiptItems);
     let expectReceipt = {
-      receiptItems:[
+      receiptItems: [
         {
           cartItem: {
             item: {
@@ -305,8 +351,8 @@ describe('pos', () => {
           saved: 4.50
         }
       ],
-      total:51.00,
-      discount:7.50
+      total: 51.00,
+      discount: 7.50
     };
 
     expect(receipt).toEqual(expectReceipt);

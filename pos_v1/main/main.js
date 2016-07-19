@@ -85,6 +85,20 @@ let buildReceipt = (receiptItems) => {
     total += receiptItem.subtotal;
     discount += receiptItem.saved;
   }
-  
+
   return {receiptItems,total,discount};
+}
+
+let printReceipt = (receipt) => {
+  let text = `***<没钱赚商店>收据***
+`;
+  for(let receiptItem of receipt.receiptItems){
+    text +=`名称：${receiptItem.cartItem.item.name}，数量：${receiptItem.cartItem.count}${receiptItem.cartItem.item.unit}，单价：${receiptItem.cartItem.item.price.toFixed(2)}(元)，小计：${receiptItem.subtotal.toFixed(2)}(元)
+`;
+  }
+  text += `----------------------
+总计：${receipt.total.toFixed(2)}(元)
+节省：${receipt.discount.toFixed(2)}(元)
+**********************`;
+  console.log(text);
 }
