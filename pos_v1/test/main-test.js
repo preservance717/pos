@@ -262,7 +262,7 @@ describe('pos', () => {
   });
 
   it("should print receipt", () => {
-    let receipt = main.buildReceipt(receiptItems);
+    let receipt = buildReceipt(receiptItems);
     let expectReceipt = {
       receiptItems:[
         {

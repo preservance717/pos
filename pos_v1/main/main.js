@@ -77,3 +77,14 @@ let discount = (cartItem, promotionType) => {
   return {subtotal, saved}
 }
 
+let buildReceipt = (receiptItems) => {
+  let total = 0;
+  let discount = 0;
+
+  for(let receiptItem of receiptItems){
+    total += receiptItem.subtotal;
+    discount += receiptItem.saved;
+  }
+  
+  return {receiptItems,total,discount};
+}
