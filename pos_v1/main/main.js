@@ -76,3 +76,4 @@ let discount = (cartItem, promotionType) => {
 
   return {subtotal, saved}
 }
+
